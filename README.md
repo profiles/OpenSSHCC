@@ -8,4 +8,4 @@ This used to be an all-in-one tweak called `SSHonCC` ("SSH Toggle and Port") and
 - A recent [Theos](https://theos.dev/) is recommended (post 2023-03-26), but it also does the rootless job with older Theos versions.  
 
 ## Changelog
-The [Changelog.md](/blanxd/OpenSshCC/-/blob/main/Changelog.md) shows how it has evolved, it is mostly about what changed before the projects were broken up, the CC Toggle itself has really always had one simple function.  
+The [Changelog.md](Changelog.md) shows how it has evolved, it is mostly about what changed before the projects were broken up, the CC Toggle itself has really always had one simple function.  
