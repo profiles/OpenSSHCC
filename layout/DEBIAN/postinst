@@ -1,0 +1,27 @@
+#!/bin/sh
+
+_fd= _mgr= _ver=0
+
+if [ -n "${SILEO}" ]; then
+	_mgr="${SILEO}"
+elif [ -n "${ZEBRA}" ]; then
+	_mgr="${ZEBRA}"
+elif [ -n "${CYDIA}" ]; then
+	_mgr="${CYDIA}"
+fi
+
+[ -z "${_mgr}" ] || {
+	read -r _fd _ver <<EOT
+${_mgr}
+EOT
+}
+
+echo 
+echo "Please do Respring your device"
+echo 
+
+[ -z "${_fd}" -o ${_ver} -lt 1 ] || {
+	echo "finish:restart" >&${_fd}
+}
+
+exit 0

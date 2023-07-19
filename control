@@ -1,0 +1,13 @@
+Package: u.blanxd.opensshcc
+Author: BlanxdH <blanxd.h@gmail.com>
+Name: OpenSSH CC Toggle
+Depends: firmware (>= 11), openssh-server | openssh, mobilesubstrate, com.opa334.ccsupport, u.blanxd.sshswitch
+Breaks: u.blanxd.sshoncc (<< 1.5~b3)
+Replaces: u.blanxd.sshoncc (<< 1.5~b3)
+Section: Addons (ControlCenter)
+Version: 1.1.0
+Architecture: iphoneos-arm
+Description: OpenSSH toggle in CC
+Maintainer: BlanxdH
+dev: blanxd
+Tag: purpose::extension
