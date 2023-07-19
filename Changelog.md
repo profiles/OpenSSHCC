@@ -1,5 +1,5 @@
 # Changelog of OpenSshCC (u.blanxd.opensshcc)
-**CHANGES 1.1.0**
+**CHANGES 1.1.0 [2023-07-20]**
 * Added rootless support
 * Added compatibility with SSHswitch 1.1.0
 
