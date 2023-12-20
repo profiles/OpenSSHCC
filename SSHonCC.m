@@ -9,6 +9,10 @@
 #include <sys/stat.h>  // stat
 #include <stdarg.h> // for my log func
 
+#include <roothide.h>
+#define ROOT_PATH(cPath) jbroot(cPath)
+#define ROOT_PATH_NS(path) jbroot(path)
+
 // This probably isn't sending anything on arm64e devices on iOS14 if built with Xcode11
 static void 
 bhLog(NSString *format, ...){
@@ -68,7 +72,7 @@ bhLog(NSString *format, ...){
 	char * ssw = "SSHswitch";
 	_p_sshswitch = [NSString stringWithFormat:@"/%s/%s/%s", usr, bin, ssw]; // rooted
 	if ( stat([_p_sshswitch UTF8String], &ftest) != 0 ){
-		_p_sshswitch = [NSString stringWithFormat:@"/var/jb%@", _p_sshswitch]; // simple /var/jb
+		_p_sshswitch = ROOT_PATH(_p_sshswitch); // simple /var/jb
 		if ( stat([_p_sshswitch UTF8String], &ftest) != 0 ){
 			NSString * envJbRoot = [[[NSProcessInfo processInfo] environment] objectForKey:@"JB_ROOT_PATH"];
 			if ( envJbRoot ){
@@ -199,7 +203,7 @@ openSshOnOffCallback(CFNotificationCenterRef center, void *observer, CFStringRef
 
 - (BOOL)evenIfLocked {
 
-	char * fp_tweakpref = "/var/mobile/Library/Preferences/u.blanxd.sshswitch/prefs";
+	const char * fp_tweakpref = ROOT_PATH("/var/mobile/Library/Preferences/u.blanxd.sshswitch/prefs");
 
 	FILE * ff_tweakpref;
 	ff_tweakpref = fopen(fp_tweakpref, "r");
@@ -227,7 +231,7 @@ openSshOnOffCallback(CFNotificationCenterRef center, void *observer, CFStringRef
 	}
 
 	struct stat elockedfs;
-	if ( stat( "/etc/ssh/u.blanxd.sshswitch.eveniflocked", &elockedfs ) == 0 )
+	if ( stat( ROOT_PATH("/etc/ssh/u.blanxd.sshswitch.eveniflocked"), &elockedfs ) == 0 )
 		return YES;
 	
 	return NO;
